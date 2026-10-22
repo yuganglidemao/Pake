@@ -22,6 +22,9 @@ on:
       name:
         description: "App name (lowercase for Linux)"
         required: true
+      proxy_url:
+        description: "Proxy URL (e.g. http://127.0.0.1:10808)"
+        required: false
       icon:
         description: "Icon URL, auto-fetch if empty"
         required: false
