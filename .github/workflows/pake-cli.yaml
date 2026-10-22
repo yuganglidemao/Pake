@@ -175,6 +175,7 @@ jobs:
         timeout-minutes: 25
         shell: pwsh
         env:
+          INPUT_PROXY_URL: ${{ inputs.proxy_url }}
           INPUT_URL: ${{ inputs.url }}
           INPUT_NAME: ${{ inputs.name }}
           INPUT_ICON: ${{ inputs.icon }}
@@ -194,6 +195,10 @@ jobs:
           # Empty environment variables are unset on Windows, so test for null too.
           if (-not [string]::IsNullOrEmpty($env:INPUT_ICON)) {
             $args += "--icon", $env:INPUT_ICON
+          }
+          # 新增这段：如果填写了代理，就追加 --proxy-url 参数
+          if (-not [string]::IsNullOrEmpty($env:INPUT_PROXY_URL)) {
+            $args += "--proxy-url", $env:INPUT_PROXY_URL
           }
 
           if (-not [string]::IsNullOrEmpty($env:INPUT_WIDTH)) {
